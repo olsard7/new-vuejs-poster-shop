@@ -6,11 +6,12 @@ new Vue ({
             { title: 'Item1 ' },
             { title: 'Item 2' },
             { title: 'Item 3 '}
-        ]
+        ],
+        cart: []
     },
     methods: {
         addItem: function(index) {
-            console.log(index);
+            this.cart.push(this.items[index]);
             this.total +=9.99;
         }
     }
