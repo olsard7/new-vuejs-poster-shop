@@ -9,11 +9,12 @@ new Vue({
             { id: 2, title: 'Item 2' },
             { id: 3, title: 'Item 3 ' }
         ],
-        cart: []
+        cart: [],
+        search: ''
     },
     methods: {
         onSubmit: function() {
-            console.log('Submitted');
+            console.log(this.search);
         },
         addItem: function (index) {
             this.total += PRICE;
