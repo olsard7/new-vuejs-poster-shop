@@ -4,17 +4,13 @@ new Vue({
     el: '#app',
     data: {
         total: 0,
-        items: [
-            { id: 1, title: 'Item1 ' },
-            { id: 2, title: 'Item 2' },
-            { id: 3, title: 'Item 3 ' }
-        ],
+        items: [],
         cart: [],
         search: ''
     },
     methods: {
         onSubmit: function() {
-            this.$http.get('/search/'.concat(this.search)).then(res => console.log(res));
+            this.$http.get('/search/'.concat(this.search)).then(res => this.items = res.data);
         },
         addItem: function (index) {
             this.total += PRICE;
