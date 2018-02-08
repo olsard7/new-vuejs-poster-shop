@@ -14,7 +14,7 @@ new Vue({
     },
     methods: {
         onSubmit: function() {
-            console.log(this.$http);
+            this.$http.get('/search/'.concat(this.search)).then(res => console.log(res));
         },
         addItem: function (index) {
             this.total += PRICE;
