@@ -6,11 +6,15 @@ new Vue({
         total: 0,
         items: [],
         cart: [],
-        search: ''
+        newSearch: '',
+        lastSearch: ''
     },
     methods: {
-        onSubmit: function() {
-            this.$http.get('/search/'.concat(this.search)).then(res => this.items = res.data);
+        onSubmit: function () {
+            this.$http.get('/search/'.concat(this.newSearch)).then(res => {
+                this.lastSearch = this.newSearch;
+                this.items = res.data;
+            });
         },
         addItem: function (index) {
             this.total += PRICE;
@@ -32,12 +36,12 @@ new Vue({
                 });
             }
         },
-        inc: function(item) {
+        inc: function (item) {
             item.qty++;
             this.total += PRICE;
 
         },
-        dec: function(item) {
+        dec: function (item) {
             item.qty--;
             this.total -= PRICE;
             if (item.qty <= 0) {
@@ -51,7 +55,7 @@ new Vue({
         }
     },
     filters: {
-        currency: function(price) {
+        currency: function (price) {
             return '$'.concat(price.toFixed(2));
         }
     }
